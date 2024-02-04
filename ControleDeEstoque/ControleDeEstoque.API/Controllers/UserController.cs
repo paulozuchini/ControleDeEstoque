@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using ControleDeEstoque.API.Domain.Models;
+﻿using ControleDeEstoque.API.Domain.Models;
 using ControleDeEstoque.API.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,51 +9,44 @@ namespace ControleDeEstoque.API.Controllers
     public class UserController : ControllerBase
     {
         private readonly IUserService _userService;
-        private readonly IMapper _mapper;
-        private readonly ILogger<UserController> _logger;
 
-        public UserController(
-            IUserService userService,
-            IMapper mapper,
-            ILogger<UserController> logger)
+        public UserController(IUserService userService)
         {
             _userService = userService;
-            _mapper = mapper;
-            _logger = logger;
         }
 
         [HttpGet]
-        public IActionResult GetAll()
+        public async Task<IActionResult> GetUsersAsync()
         {
-            var users = _userService.GetAll();
+            var users = await _userService.GetUsersAsync();
             return Ok(users);
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetById(Guid id)
+        public async Task<IActionResult> GetUserByIdAsync(Guid id)
         {
-            var user = _userService.GetById(id);
+            var user = await _userService.GetUserByIdAsync(id);
             return Ok(user);
         }
 
         [HttpPost]
-        public IActionResult Create(CreateUserRequest model)
+        public async Task<IActionResult> AddUserAsync(CreateUserRequest model)
         {
-            _userService.Create(model);
+            await _userService.AddUserAsync(model);
             return Ok(new { message = "User created" });
         }
 
-        [HttpPut("{id}")]
-        public IActionResult Update(Guid id, UpdateUserRequest model)
+        [HttpPut("{id, UpdateUserRequest}")]
+        public async Task<IActionResult> UpdateUserAsync(Guid id, UpdateUserRequest model)
         {
-            _userService.Update(id, model);
+            await _userService.UpdateUserAsync(id, model);
             return Ok(new { message = "User updated" });
         }
 
         [HttpDelete("{id}")]
-        public IActionResult Delete(Guid id)
+        public async Task<IActionResult> DeleteUserAsync(Guid id)
         {
-            _userService.Delete(id);
+            await _userService.DeleteUserAsync(id);
             return Ok(new { message = "User deleted" });
         }
     }

@@ -26,5 +26,10 @@ namespace ControleDeEstoque.API.Context
         }
 
         public DbSet<User> Users { get; set; }
+        public DbSet<Cliente> Cliente { get; set; }
+        public DbSet<Faturamento> Faturamento { get; set; }
+        public DbSet<ItemEstoque> ItemEstoque { get; set; }
+        public DbSet<ItemPedido> ItemPedido { get; set; }
+        public DbSet<Pedido> Pedido { get; set; }
     }
 }

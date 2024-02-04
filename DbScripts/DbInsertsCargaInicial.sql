@@ -1,9 +1,9 @@
 USE [controledeestoque]
 GO
 -- Inserindo dados de Clientes
-INSERT INTO Clientes (Nome, Email, Telefone)
+INSERT INTO Cliente (Nome, Email, Telefone)
 VALUES
-    ('João Silva', 'joao@example.com', '123456789'),
+    ('Joao Silva', 'joao@example.com', '123456789'),
     ('Maria Souza', 'maria@example.com', '987654321'),
     ( 'Carlos Oliveira', 'carlos@example.com', '111222333');
 GO
@@ -19,12 +19,12 @@ VALUES
     ('Xbox Series X', 12),
     ('MacBook Air', 8),
     ('Smartwatch Apple Watch', 20),
-    ('Câmera Digital Canon EOS', 18),
+    ('Camera Digital Canon EOS', 18),
     ('Fone de Ouvido Bluetooth Sony', 35);
 GO
 
 -- Inserindo dados de Pedidos
-INSERT INTO Pedidos (ClienteID, DataPedido, StatusPedido)
+INSERT INTO Pedido (ClienteID, DataPedido, StatusPedido)
 VALUES
     (1, '2024-01-15', 'Faturado'),
     (1, '2024-01-20', 'Em andamento'),
@@ -35,7 +35,7 @@ VALUES
 GO
 
 -- Inserindo dados de Itens do Pedido
-INSERT INTO ItensPedido (PedidoID, ItemID, Quantidade)
+INSERT INTO ItemPedido (PedidoID, ItemID, Quantidade)
 VALUES
     (1, 1, 2),
     (1, 2, 1),

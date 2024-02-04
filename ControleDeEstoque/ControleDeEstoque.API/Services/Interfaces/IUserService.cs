@@ -5,10 +5,10 @@ namespace ControleDeEstoque.API.Services.Interfaces
 {
     public interface IUserService
     {
-        IEnumerable<User> GetAll();
-        User GetById(Guid id);
-        void Create(CreateUserRequest model);
-        void Update(Guid id, UpdateUserRequest model);
-        void Delete(Guid id);
+        Task<List<User>> GetUsersAsync();
+        Task<User> GetUserByIdAsync(Guid id);
+        Task AddUserAsync(CreateUserRequest model);
+        Task UpdateUserAsync(Guid id, UpdateUserRequest model);
+        Task DeleteUserAsync(Guid id);
     }
 }

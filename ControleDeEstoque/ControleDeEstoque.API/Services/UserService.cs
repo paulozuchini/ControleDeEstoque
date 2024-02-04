@@ -4,6 +4,7 @@ using ControleDeEstoque.API.Domain.Entities;
 using ControleDeEstoque.API.Domain.Models;
 using ControleDeEstoque.API.Helpers;
 using ControleDeEstoque.API.Services.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using BC = BCrypt.Net.BCrypt;
 
 namespace ControleDeEstoque.API.Services
@@ -12,29 +13,28 @@ namespace ControleDeEstoque.API.Services
     {
         private DatabaseContext _context;
         private readonly IMapper _mapper;
-        private readonly ILogger<UserService> _logger;
 
         public UserService(
         DatabaseContext context,
-        IMapper mapper,
-        ILogger<UserService> logger)
+        IMapper mapper)
         {
             _context = context;
             _mapper = mapper;
-            _logger = logger;
         }
 
-        public IEnumerable<User> GetAll()
+        public async Task<List<User>> GetUsersAsync()
         {
-            return _context.Users;
+            return await _context.Users.ToListAsync();
         }
 
-        public User GetById(Guid id)
+        public async Task<User> GetUserByIdAsync(Guid id)
         {
-            return getUser(id);
+            var user = await _context.Users.FindAsync(id);
+            if (user == null) throw new KeyNotFoundException("User not found");
+            return user;
         }
 
-        public void Create(CreateUserRequest model)
+        public async Task AddUserAsync(CreateUserRequest model)
         {
             // validate
             if (_context.Users.Any(x => x.Email == model.Email))
@@ -48,12 +48,12 @@ namespace ControleDeEstoque.API.Services
 
             // save user
             _context.Users.Add(user);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
-        public void Update(Guid id, UpdateUserRequest model)
+        public async Task UpdateUserAsync(Guid id, UpdateUserRequest model)
         {
-            var user = getUser(id);
+            var user = await GetUserByIdAsync(id);
 
             // validate
             if (model.Email != user.Email && _context.Users.Any(x => x.Email == model.Email))
@@ -65,24 +65,13 @@ namespace ControleDeEstoque.API.Services
 
             // copy model to user and save
             _mapper.Map(model, user);
-            _context.Users.Update(user);
-            _context.SaveChanges();
+            _context.Update(user);
+            await _context.SaveChangesAsync();
         }
 
-        public void Delete(Guid id)
+        public async Task DeleteUserAsync(Guid id)
         {
-            var user = getUser(id);
-            _context.Users.Remove(user);
-            _context.SaveChanges();
-        }
-
-        // helper methods
-
-        private User getUser(Guid id)
-        {
-            var user = _context.Users.Find(id);
-            if (user == null) throw new KeyNotFoundException("User not found");
-            return user;
+            await _context.Users.Where(u => u.Id == id).ExecuteDeleteAsync();
         }
     }
 }
