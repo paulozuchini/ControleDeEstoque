@@ -1,0 +1,6 @@
+@ControleDeEstoque.API_HostAddress = http://localhost:5260
+
+GET {{ControleDeEstoque.API_HostAddress}}/user/
+Accept: application/json
+
+###
