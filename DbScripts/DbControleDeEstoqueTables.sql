@@ -3,7 +3,7 @@ GO
 
 -- Tabela de Clientes
 CREATE TABLE Clientes (
-    ClienteID INT PRIMARY KEY,
+    ClienteID INT PRIMARY KEY IDENTITY,
     Nome VARCHAR(100) NOT NULL,
     Email VARCHAR(100) NOT NULL,
     Telefone VARCHAR(15)
@@ -11,14 +11,14 @@ CREATE TABLE Clientes (
 GO
 -- Tabela de Itens no Estoque
 CREATE TABLE Estoque (
-    ItemID INT PRIMARY KEY,
+    ItemID INT PRIMARY KEY IDENTITY,
     NomeProduto VARCHAR(100) NOT NULL,
     Quantidade INT NOT NULL
 );
 GO
 -- Tabela de Pedidos
 CREATE TABLE Pedidos (
-    PedidoID INT PRIMARY KEY,
+    PedidoID INT PRIMARY KEY IDENTITY,
     ClienteID INT REFERENCES Clientes(ClienteID) NOT NULL,
     DataPedido DATE NOT NULL,
     StatusPedido VARCHAR(20) NOT NULL, -- Pode ser 'Em andamento', 'Faturado' ou 'Cancelado'
@@ -27,7 +27,7 @@ CREATE TABLE Pedidos (
 GO
 -- Tabela de Itens do Pedido
 CREATE TABLE ItensPedido (
-    ItemPedidoID INT PRIMARY KEY,
+    ItemPedidoID INT PRIMARY KEY IDENTITY,
     PedidoID INT REFERENCES Pedidos(PedidoID) NOT NULL,
     ItemID INT REFERENCES Estoque(ItemID) NOT NULL,
     Quantidade INT NOT NULL,
