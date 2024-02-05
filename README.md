@@ -54,6 +54,14 @@ A aplicação será iniciada e estará disponível em `https://localhost:5000` (
 - RESTful API
 - Swagger
 
+## Próximas Etapas e Objetivos ainda não atingidos
+
+- Faz-se necessário o desenvolvimento de  testes unitários abrangentes, abordando casos de uso e cenários de exceção para garantir a robustez do sistema;
+- Permitir a entrada no sistema somente para usuário autorizados
+- Enviar uma notificação ao cliente referente ao faturamento do pedido
+- Front-end em Angular, permitindo utilização do sistema
+- Tela de login e autenticação nos endpoints
+
 ## Contribuindo
 
 Se você encontrar algum problema ou tiver alguma sugestão, sinta-se à vontade para abrir uma issue ou enviar um pull request. Estamos abertos a contribuições!
