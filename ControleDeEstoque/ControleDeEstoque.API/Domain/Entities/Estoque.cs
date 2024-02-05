@@ -4,7 +4,7 @@ using System.Diagnostics.CodeAnalysis;
 namespace ControleDeEstoque.API.Domain.Entities
 {
     [ExcludeFromCodeCoverage]
-    public class ItemEstoque
+    public class Estoque
     {
         [Key]
         public int ItemID { get; set; }

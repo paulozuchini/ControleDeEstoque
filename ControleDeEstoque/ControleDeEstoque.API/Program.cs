@@ -37,6 +37,7 @@ var builder = WebApplication.CreateBuilder(args);
     // Dependency Injection for Application Services
     services.AddScoped<IUserService, UserService>();
     services.AddScoped<IClienteService, ClienteService>();
+    services.AddScoped<IEstoqueService, EstoqueService>();
 }
 
 var app = builder.Build();

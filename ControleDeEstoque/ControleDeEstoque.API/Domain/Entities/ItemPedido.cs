@@ -18,7 +18,7 @@ namespace ControleDeEstoque.API.Domain.Entities
         public int ItemID { get; set; }
 
         [ForeignKey("ItemID")]
-        public ItemEstoque ItemEstoque { get; set; }
+        public Estoque ItemEstoque { get; set; }
 
         public int Quantidade { get; set; }
     }
