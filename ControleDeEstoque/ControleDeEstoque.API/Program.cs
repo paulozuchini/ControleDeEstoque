@@ -39,6 +39,7 @@ var builder = WebApplication.CreateBuilder(args);
     services.AddScoped<IClienteService, ClienteService>();
     services.AddScoped<IEstoqueService, EstoqueService>();
     services.AddScoped<IFaturamentoService, FaturamentoService>();
+    services.AddScoped<IPedidoService, PedidoService>();
 }
 
 var app = builder.Build();
