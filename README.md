@@ -19,7 +19,7 @@ A API foi documentada utilizando o Swagger, uma ferramenta de código aberto que
 Você pode baixar ou clonar este repositório usando o seguinte comando:
 
 ```
-git clone https://github.com/seuusuario/seurepositorio.git
+git clone https://github.com/paulozuchini/ControleDeEstoque.git
 ```
 
 ## Requisitos
@@ -43,7 +43,7 @@ Após preparar o ambiente e configurar a conexão com o banco de dados, você po
 dotnet run
 ```
 
-A aplicação será iniciada e estará disponível em `https://localhost:5001` (ou `http://localhost:5000`).
+A aplicação será iniciada e estará disponível em `https://localhost:5000` (ou `http://localhost:5001`).
 
 ## Tecnologias Utilizadas
 
