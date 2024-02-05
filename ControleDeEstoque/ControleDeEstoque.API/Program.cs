@@ -38,6 +38,7 @@ var builder = WebApplication.CreateBuilder(args);
     services.AddScoped<IUserService, UserService>();
     services.AddScoped<IClienteService, ClienteService>();
     services.AddScoped<IEstoqueService, EstoqueService>();
+    services.AddScoped<IFaturamentoService, FaturamentoService>();
 }
 
 var app = builder.Build();
