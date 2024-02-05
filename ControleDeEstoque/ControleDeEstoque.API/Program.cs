@@ -35,12 +35,13 @@ var builder = WebApplication.CreateBuilder(args);
     services.AddDbContext<DatabaseContext>(options => options.UseSqlServer("name=ConnectionStrings:DefaultConnection"));
 
     // Dependency Injection for Application Services
-    services.AddScoped<IUserService, UserService>();
     services.AddScoped<IClienteService, ClienteService>();
     services.AddScoped<IEstoqueService, EstoqueService>();
     services.AddScoped<IFaturamentoService, FaturamentoService>();
-    services.AddScoped<IPedidoService, PedidoService>();
     services.AddScoped<IItemPedidoService, ItemPedidoService>();
+    services.AddScoped<IPedidoService, PedidoService>();
+    services.AddScoped<IUserService, UserService>();
+    services.AddScoped<IRelatorioPedidosPorDiaService, RelatorioPedidosPorDiaService>();
 }
 
 var app = builder.Build();
